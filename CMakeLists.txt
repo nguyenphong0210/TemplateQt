@@ -28,8 +28,10 @@ foreach(COMPONENT_DIR ${COMPONENT_DIRS})
     list(APPEND COMPONENT_TARGETS ${COMPONENT_NAME})
 endforeach()
 
+add_subdirectory(Content)
+
 target_link_libraries(appWinApp
-    PRIVATE Qt6::Quick core
+    PRIVATE Qt6::Quick core Contentplugin
 )
 
 set(QT_DEPLOY_TOOL "${Qt6_DIR}/../../../bin/windeployqt.exe")
