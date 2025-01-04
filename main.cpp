@@ -1,10 +1,13 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QResource>
 #include "HelloWorld.h"
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
+
+    QResource::registerResource("Content/Images.rcc");
 
     HelloWorld aa;
     aa.sayHello();

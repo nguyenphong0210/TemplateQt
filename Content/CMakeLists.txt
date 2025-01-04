@@ -11,8 +11,9 @@ qt6_add_qml_module(Content
     QML_FILES
         App.qml
         MainForm.ui.qml
-    RESOURCES
-        Image/TestImage.jpg
 )
+
+qt_add_binary_resources(resources Images.qrc DESTINATION Images.rcc)
+add_dependencies(Content resources)
 
 target_link_libraries(Content PRIVATE Qt6::Core Qt6::Qml)
