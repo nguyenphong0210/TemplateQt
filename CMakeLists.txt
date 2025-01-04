@@ -17,15 +17,23 @@ qt_add_qml_module(appWinApp
     QML_FILES Main.qml
 )
 
-target_link_libraries(appWinApp
-    PRIVATE Qt6::Quick
+set(COMPONENT_DIRS
+    "${CMAKE_SOURCE_DIR}/Components/core"
 )
 
-# Xác định đường dẫn tới windeployqt
+set(COMPONENT_TARGETS)
+
+foreach(COMPONENT_DIR ${COMPONENT_DIRS})
+    add_subdirectory(${COMPONENT_DIR})
+    list(APPEND COMPONENT_TARGETS ${COMPONENT_NAME})
+endforeach()
+
+target_link_libraries(appWinApp
+    PRIVATE Qt6::Quick core
+)
+
 set(QT_DEPLOY_TOOL "${Qt6_DIR}/../../../bin/windeployqt.exe")
 
-# Thêm custom command để chạy windeployqt sau khi build
 add_custom_command(TARGET appWinApp POST_BUILD
     COMMAND "${QT_DEPLOY_TOOL}" "$<TARGET_FILE:appWinApp>"
-    COMMENT "Running windeployqt to deploy dependencies"
 )

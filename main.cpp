@@ -1,9 +1,13 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include "HelloWorld.h"
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
+
+    HelloWorld aa;
+    aa.sayHello();
 
     QQmlApplicationEngine engine;
     const QUrl url(u"qrc:/WinApp/Main.qml"_qs);
